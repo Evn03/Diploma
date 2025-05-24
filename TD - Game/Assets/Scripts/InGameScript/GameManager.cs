@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
+    public void AddGold(int amount)
+    {
+        gold += amount;
+        UIManager.Instance.UpdateGoldUI(gold);
+    }
 
     public bool SpendGold(int amount)
     {
@@ -25,12 +30,6 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void AddGold(int amount)
-    {
-        gold += amount;
-        UIManager.Instance.UpdateGoldUI(gold);
     }
 }
 

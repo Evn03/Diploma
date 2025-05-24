@@ -11,6 +11,8 @@ public class MapData
 public class MapParser : MonoBehaviour
 {
     public static MapParser Instance;
+    public int Width => width;
+    public int Height => height;
 
     [Header("Tile Prefabs")]
     public GameObject grassPrefab;

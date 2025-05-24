@@ -19,7 +19,7 @@ public class GoldTowerBehaviour : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0f)
         {
-            GameManager.Instance.AddGold(5); // фиксированное золото
+            GameManager.Instance.AddGold(25);
             timer = interval;
         }
     }
