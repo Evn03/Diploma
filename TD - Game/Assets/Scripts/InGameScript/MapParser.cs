@@ -6,11 +6,16 @@ using UnityEngine;
 public class MapData
 {
     public string[] map;
+    public int enemyCount;
 }
 
 public class MapParser : MonoBehaviour
 {
+    public TileData entryTile;
+    public TileData exitTile;
     public static MapParser Instance;
+    private int totalEnemies;
+    public int TotalEnemies => totalEnemies;
     public int Width => width;
     public int Height => height;
 
@@ -51,9 +56,12 @@ public class MapParser : MonoBehaviour
         return null;
     }
 
+    public TileData[,] GetGrid() => grid;
+
     private void GenerateMap()
     {
         MapData mapData = JsonUtility.FromJson<MapData>(jsonMap.text);
+        totalEnemies = mapData.enemyCount;
         string[] map = mapData.map;
 
         height = map.Length;
@@ -82,8 +90,13 @@ public class MapParser : MonoBehaviour
                 {
                     Vector3 position = new Vector3(x * scale, -y * scale, 0) + mapOffset;
                     GameObject tileGO = Instantiate(prefab, position, Quaternion.identity, transform);
-
                     tileGO.transform.localScale = Vector3.one * scale;
+
+                    SpriteRenderer sr = tileGO.GetComponent<SpriteRenderer>();
+                    if (sr != null)
+                    {
+                        sr.sortingOrder = y * 10;
+                    }
 
                     bool isWalkable = tile == 'R' || tile == 'I' || tile == 'O';
                     bool isBuildable = tile == 'G';
@@ -91,13 +104,16 @@ public class MapParser : MonoBehaviour
                     TileData tileData = new TileData(x, y, isBuildable, isWalkable, tileGO);
                     grid[x, y] = tileData;
 
+                    if (tile == 'I') entryTile = tileData;
+                    if (tile == 'O') exitTile = tileData;
+
                     TileBehaviour behaviour = tileGO.GetComponent<TileBehaviour>();
                     if (behaviour != null)
                         behaviour.Init(x, y);
                 }
             }
         }
-        
+
         Vector3 mapCenter = new Vector3((width - 1) * scale / 2f, -(height - 1) * scale / 2f, -10f) + mapOffset;
         Camera.main.transform.position = mapCenter;
 

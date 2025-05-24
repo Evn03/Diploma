@@ -3,9 +3,10 @@
       "WGGGGGGGGGGGW",
       "WGGRRRRRRRGGW",
       "WGGRGGGGGRGGW",
-      "IRRRRRRRRRRRO",
-      "WGGRGGGGGGGGW",
+      "IRRRRRRGGRRRO",
+      "WGGRGGRGGGGGW",
       "WGGRRRRGGGGGW",
       "WGGGGGGGGGGGW"
-    ]
+    ],
+    "enemyCount": 10
   }

@@ -102,6 +102,11 @@ public class TowerPlacer : MonoBehaviour
         position.y += spriteHeight / 4f * -0.8f;
 
         GameObject towerGO = Instantiate(selectedTowerPrefab.gameObject, position, Quaternion.identity);
+        SpriteRenderer sr = towerGO.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sortingOrder = y * 10 + 5;
+        }
         Tower towerComponent = towerGO.GetComponent<Tower>();
         if (towerComponent != null)
         {
@@ -109,6 +114,7 @@ public class TowerPlacer : MonoBehaviour
         }
         selectedTowerPrefab = null;
         isPlacingTower = false;
+        EnemyManager.Instance.NotifyPathChanged();
         ResetAllHighlights();
     }
 }
