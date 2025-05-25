@@ -42,7 +42,15 @@ public class EnemyMover : MonoBehaviour
 
     public void RecalculatePath()
     {
-        TileData currentTile = MapParser.Instance.GetTileAt(Mathf.RoundToInt(transform.position.x / MapParser.Instance.scale), Mathf.RoundToInt(-transform.position.y / MapParser.Instance.scale));
+        int gridX = Mathf.RoundToInt(transform.position.x / MapParser.Instance.scale);
+        int gridY = Mathf.RoundToInt(-transform.position.y / MapParser.Instance.scale);
+        TileData currentTile = MapParser.Instance.GetTileAt(gridX, gridY);
+
+        if (currentTile == null)
+        {
+            Debug.LogWarning($"EnemyMover.RecalculatePath: текущий тайл по позиции ({gridX}, {gridY}) не найден!");
+            return;
+        }
         Pathfinding pathfinder = new Pathfinding(MapParser.Instance.GetGrid(), MapParser.Instance.Width, MapParser.Instance.Height);
         List<TileData> newPath = pathfinder.FindPath(currentTile, MapParser.Instance.exitTile);
         SetPath(newPath);
@@ -59,7 +67,6 @@ public class EnemyMover : MonoBehaviour
         TileData currentTile = path[currentIndex];
         Vector3 target = currentTile.worldPosition;
 
-        // Проверка на препятствие
         if (currentTarget == null)
         {
             Collider2D hit = Physics2D.OverlapCircle(target, 0.1f);
@@ -105,9 +112,10 @@ public class EnemyMover : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float damage)
     {
-        health -= amount;
+        health -= damage;
+
         if (health <= 0)
         {
             OnDeath?.Invoke();

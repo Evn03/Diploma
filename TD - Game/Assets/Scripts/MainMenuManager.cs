@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MainMenuManager : MonoBehaviour
@@ -24,7 +25,10 @@ public class MainMenuManager : MonoBehaviour
         StartCoroutine(MoveCoroutine(destination));
         isAtOriginalPosition = !isAtOriginalPosition; 
     }
-
+    public void LogOut()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
     private IEnumerator MoveCoroutine(Vector2 targetPos)
     {
         Vector2 startPos = targetObject.anchoredPosition;

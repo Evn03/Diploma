@@ -60,7 +60,7 @@ public class MapParser : MonoBehaviour
 
     private void GenerateMap()
     {
-        MapData mapData = JsonUtility.FromJson<MapData>(jsonMap.text);
+        MapData mapData = JsonUtility.FromJson<MapData>(UserSession.LevelJson);
         totalEnemies = mapData.enemyCount;
         string[] map = mapData.map;
 

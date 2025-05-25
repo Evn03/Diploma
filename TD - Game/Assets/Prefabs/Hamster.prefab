@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  health: 10
+  health: 3
   attackDamage: 1
   attackInterval: 1
 --- !u!58 &2987644245418256525

@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  isExit: 1
 --- !u!1 &7224272503357216297
 GameObject:
   m_ObjectHideFlags: 0

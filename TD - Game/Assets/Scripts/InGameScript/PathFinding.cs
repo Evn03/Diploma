@@ -17,6 +17,11 @@ public class Pathfinding
 
     public List<TileData> FindPath(TileData start, TileData goal)
     {
+        if (start == null || goal == null)
+        {
+            Debug.LogError("Pathfinding.FindPath: start или goal — null!");
+            return new List<TileData>();
+        }
         List<TileData> openSet = new List<TileData> { start };
         HashSet<TileData> closedSet = new HashSet<TileData>();
 

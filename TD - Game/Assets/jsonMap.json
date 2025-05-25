@@ -1,12 +1,12 @@
 {
-    "map": [
-      "WGGGGGGGGGGGW",
-      "WGGRRRRRRRGGW",
-      "WGGRGGGGGRGGW",
-      "IRRRRRRGGRRRO",
-      "WGGRGGRGGGGGW",
-      "WGGRRRRGGGGGW",
-      "WGGGGGGGGGGGW"
-    ],
-    "enemyCount": 10
-  }
+  "enemyCount": 5,
+  "map": [
+    "WGGGGGGGGGGGW",
+    "WGGRRRRRRRGGW",
+    "WGGRGGGGGRGGW",
+    "ORRRRRRRRRRRI",
+    "WGGRGGGGGGGGW",
+    "WGGRRRRGGGGGW",
+    "WGGGGGGGGGGGW"
+  ]
+} 

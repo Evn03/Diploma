@@ -8,8 +8,8 @@ public class Tower : MonoBehaviour
     public int cost;
     public TowerType type;
 
-    public float attackRange = 3f;     // Радиус атаки
-    public float attackCooldown = 1f;  // Интервал между выстрелами в секундах
+    public float attackRange = 3f;   
+    public float attackCooldown = 1f; 
 
     public enum TowerType
     {

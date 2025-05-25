@@ -8,13 +8,22 @@ public class Blocker : MonoBehaviour, IDamageable
 
     public bool IsDestroyed => health <= 0;
 
+    public bool isExit = false;
+
     public void TakeDamage(float amount)
     {
         health -= amount;
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            if (isExit)
+            {
+                EndGameUI.Instance.ShowDefeat();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

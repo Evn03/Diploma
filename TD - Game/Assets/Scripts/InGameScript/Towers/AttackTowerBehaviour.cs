@@ -6,6 +6,7 @@ public class AttackTowerBehaviour : MonoBehaviour
 {
     private Tower tower;
     private float cooldownTimer = 0f;
+    public GameObject bulletPrefab;
 
     void Start()
     {
@@ -38,15 +39,16 @@ public class AttackTowerBehaviour : MonoBehaviour
         return null;
     }
 
-    void Shoot(GameObject enemy)
+void Shoot(GameObject enemy)
+{
+    if (bulletPrefab != null)
     {
-        // Пока просто наносим урон напрямую
-        Enemy e = enemy.GetComponent<Enemy>();
-        if (e != null)
-        {
-            e.TakeDamage(1); // временно фиксированный урон
-        }
+        GameObject bulletGO = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+        bullet.Initialize(enemy.transform, 1f);
     }
+}
 
     void OnDrawGizmosSelected()
     {
